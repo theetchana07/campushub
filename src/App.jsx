@@ -3,7 +3,7 @@ import {
   Home, BookOpen, TrendingUp, Users, Calendar, User, 
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
-import gemPoster from './assets/gemi.png';
+import gemPoster from './assets/gemin.png';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -355,7 +355,7 @@ function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }
       ]
     },
     {
-      name: "Engineering Mathematics 2",
+      name: "Engineering Mathematics 1",
       books: [
         "Grewal, B.S. and Grewal, J.S., “Numerical Methods in Engineering and Science”, Khanna Publishers, New Delhi, 11th Edition, 2017.",
         "Erwin Kreyszig, “Advanced Engineering Mathematics”, John Wiley & Sons, 10th Edition, 2017."
@@ -923,6 +923,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
               <option value="ICE" style={{ background: cardBg, color: textColor }}>ICE</option>
               <option value="IT" style={{ background: cardBg, color: textColor }}>IT</option>
               <option value="MECH" style={{ background: cardBg, color: textColor }}>MECH</option>
+              <option value="CIVIL" style={{ background: cardBg, color: textColor }}>CIVIL</option>
             </select>
           </div>
           <button 
