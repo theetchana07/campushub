@@ -866,7 +866,6 @@ function EventsPage({ cardBg, borderColor, accentColor, textMuted, darkMode, tex
     </div>
   );
 }
-
 function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColor, accentColor, textMuted, textColor }) {
   const [name, setName] = useState(profile?.name || '');
   const [email, setEmail] = useState(profile?.email || '');
@@ -882,8 +881,6 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      
-      {/* Professional Profile Identity Card Header */}
       <div style={{ 
         background: cardBg, 
         borderRadius: '16px', 
@@ -894,7 +891,6 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
         gap: '20px',
         boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
       }}>
-        {/* Round Avatar Icon */}
         <div style={{
           width: '72px',
           height: '72px',
@@ -913,7 +909,6 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
           {name ? name.charAt(0) : 'U'}
         </div>
 
-        {/* User Meta Information */}
         <div style={{ overflow: 'hidden' }}>
           <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 4px 0', color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {name || 'Student Profile'}
@@ -936,7 +931,6 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
         </div>
       </div>
 
-      {/* Settings Form Section */}
       <div style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '24px', color: textColor }}>
         <div style={{ marginBottom: '20px' }}>
           <h3 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 4px 0', color: textColor }}>Edit Credentials</h3>
@@ -993,8 +987,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
               borderRadius: '8px', 
               fontWeight: '600', 
               cursor: 'pointer',
-              marginTop: '8px',
-              transition: 'opacity 0.2s'
+              marginTop: '8px'
             }}
           >
             Save Profile Credentials
@@ -1005,3 +998,4 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
     </div>
   );
 }
+
