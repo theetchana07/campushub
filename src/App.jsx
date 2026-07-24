@@ -355,13 +355,6 @@ function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }
       ]
     },
     {
-      name: "Engineering Mathematics",
-      books: [
-        "Grewal, B.S. and Grewal, J.S., “Numerical Methods in Engineering and Science”, Khanna Publishers, New Delhi, 11th Edition, 2017.",
-        "Erwin Kreyszig, “Advanced Engineering Mathematics”, John Wiley & Sons, 10th Edition, 2017."
-      ]
-    },
-    {
       name: "Physics for Civil Engineering",
       books: [
         "Hugo Hens, “Applied Building Physics”, Wiley, 2023.",
@@ -381,6 +374,13 @@ function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }
       books: [
         "Beer Ferdinand P, Russel Johnston Jr., David F Mazurek, Philip J Cornwell, Sanjeev Sanghi, Vector Mechanics for Engineers: Statics and Dynamics, McGraw Higher Education, 12th Edition, 2019.",
         "Vela Murali, “Engineering Mechanics-Statics and Dynamics”, Oxford University Press, 2nd Edition, 2018."
+      ]
+    },
+    {
+      name: "Engineering Mathematics",
+      books: [
+        "Grewal, B.S. and Grewal, J.S., “Numerical Methods in Engineering and Science”, Khanna Publishers, New Delhi, 11th Edition, 2017.",
+        "Erwin Kreyszig, “Advanced Engineering Mathematics”, John Wiley & Sons, 10th Edition, 2017."
       ]
     },
     {
