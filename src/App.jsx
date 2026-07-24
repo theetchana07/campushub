@@ -866,7 +866,6 @@ function EventsPage({ cardBg, borderColor, accentColor, textMuted, darkMode, tex
     </div>
   );
 }
-
 function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColor, accentColor, textMuted, textColor }) {
   const [name, setName] = useState(profile?.name || '');
   const [email, setEmail] = useState(profile?.email || '');
@@ -881,36 +880,68 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', color: textColor }}>
+    <div style={{ maxWidth: '600px', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
-      {/* Header section with live initial avatar preview */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-        <div>
-          <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 6px 0', color: textColor }}>Student Profile Settings</h2>
-          <p style={{ color: textMuted, margin: 0, fontSize: '13px' }}>Manage your identification credentials and check your tracking metrics.</p>
-        </div>
-        
-        {/* Live Initial Avatar */}
+      {/* Professional Profile Identity Card Header */}
+      <div style={{ 
+        background: cardBg, 
+        borderRadius: '16px', 
+        border: `1px solid ${borderColor}`, 
+        padding: '24px', 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '20px',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
+      }}>
+        {/* Round Avatar Icon */}
         <div style={{
-          width: '46px',
-          height: '46px',
+          width: '72px',
+          height: '72px',
           borderRadius: '50%',
           backgroundColor: accentColor,
           color: '#fff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontWeight: '700',
-          fontSize: '18px',
+          fontWeight: '800',
+          fontSize: '28px',
           textTransform: 'uppercase',
           boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
           flexShrink: 0
         }}>
-          {name ? name.charAt(0) : '?'}
+          {name ? name.charAt(0) : 'U'}
+        </div>
+
+        {/* User Meta Information */}
+        <div style={{ overflow: 'hidden' }}>
+          <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 4px 0', color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {name || 'Student Profile'}
+          </h2>
+          <p style={{ color: textMuted, margin: '0 0 8px 0', fontSize: '13px' }}>
+            {email || 'No email registered yet'}
+          </p>
+          <span style={{ 
+            display: 'inline-block', 
+            fontSize: '11px', 
+            fontWeight: '700', 
+            background: 'rgba(155, 28, 49, 0.1)', 
+            color: accentColor, 
+            padding: '3px 10px', 
+            borderRadius: '6px',
+            textTransform: 'uppercase'
+          }}>
+            Department: {department}
+          </span>
         </div>
       </div>
 
-      <div style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '24px', marginBottom: '20px', color: textColor }}>
+      {/* Settings Form Section */}
+      <div style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '24px', color: textColor }}>
+        <div style={{ marginBottom: '20px' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 4px 0', color: textColor }}>Edit Credentials</h3>
+          <p style={{ color: textMuted, margin: 0, fontSize: '13px' }}>Update your identification profile details below.</p>
+        </div>
+
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
             <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', marginBottom: '6px', color: textMuted }}>Full Name</label>
@@ -919,7 +950,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
               value={name} 
               onChange={(e) => setName(e.target.value)} 
               placeholder="e.g. Alex Johnson" 
-              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box' }}
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none' }}
             />
           </div>
           <div>
@@ -929,7 +960,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               placeholder="e.g. alex@university.edu" 
-              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box' }}
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none' }}
             />
           </div>
           <div>
@@ -937,7 +968,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
             <select 
               value={department} 
               onChange={(e) => setDepartment(e.target.value)}
-              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box' }}
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none' }}
             >
               <option value="CSBS" style={{ background: cardBg, color: textColor }}>CSBS</option>
               <option value="CSE" style={{ background: cardBg, color: textColor }}>CSE</option>
@@ -961,7 +992,8 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
               borderRadius: '8px', 
               fontWeight: '600', 
               cursor: 'pointer',
-              marginTop: '8px'
+              marginTop: '8px',
+              transition: 'opacity 0.2s'
             }}
           >
             Save Profile Credentials
@@ -972,4 +1004,3 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
     </div>
   );
 }
-
