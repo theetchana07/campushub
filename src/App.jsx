@@ -882,8 +882,33 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', color: textColor }}>
-      <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 6px 0', color: textColor }}>Student Profile Settings</h2>
-      <p style={{ color: textMuted, marginBottom: '20px', fontSize: '13px' }}>Manage your identification credentials and check your tracking metrics.</p>
+      
+      {/* Header section with live initial avatar preview */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+        <div>
+          <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 6px 0', color: textColor }}>Student Profile Settings</h2>
+          <p style={{ color: textMuted, margin: 0, fontSize: '13px' }}>Manage your identification credentials and check your tracking metrics.</p>
+        </div>
+        
+        {/* Live Initial Avatar */}
+        <div style={{
+          width: '46px',
+          height: '46px',
+          borderRadius: '50%',
+          backgroundColor: accentColor,
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontWeight: '700',
+          fontSize: '18px',
+          textTransform: 'uppercase',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          flexShrink: 0
+        }}>
+          {name ? name.charAt(0) : '?'}
+        </div>
+      </div>
 
       <div style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '24px', marginBottom: '20px', color: textColor }}>
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -947,3 +972,4 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
     </div>
   );
 }
+
