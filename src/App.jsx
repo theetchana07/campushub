@@ -310,7 +310,7 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           </div>
         </div>
 
-        {/* GEMINI CREATED POSTER SPACE */}
+        {/* GEMINI CREATED POSTER DISPLAY */}
         <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
@@ -319,28 +319,23 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
             <span style={{ fontSize: '10px', background: 'rgba(155, 28, 49, 0.1)', color: accentColor, padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>FEATURED</span>
           </div>
           
-          {/* Poster Frame Placeholder */}
+          {/* Poster Image Container */}
           <div style={{ 
             flex: 1, 
             minHeight: '180px', 
             borderRadius: '12px', 
-            border: `2px dashed ${borderColor}`, 
+            border: `1px solid ${borderColor}`, 
+            overflow: 'hidden',
             display: 'flex', 
-            flexDirection: 'column', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)',
-            padding: '16px',
-            textAlign: 'center',
-            gap: '8px'
+            background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
           }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(155, 28, 49, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: accentColor }}>
-              <Sparkles size={20} />
-            </div>
-            <div style={{ fontSize: '13px', fontWeight: '600', color: textColor }}>Gemini Event Poster Space</div>
-            <div style={{ fontSize: '11px', color: textMuted, maxWidth: '240px' }}>
-              Drop your generated creative assets, welcome banners, or AI posters here.
-            </div>
+            <img 
+              src={gemPoster} 
+              alt="Gemini Poster" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '220px', display: 'block' }} 
+            />
           </div>
         </div>
 
