@@ -3,7 +3,7 @@ import {
   Home, BookOpen, TrendingUp, Users, Calendar, User, 
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
-import gemPoster from './assets/gem.png';
+import gemPoster from './assets/gemi.png';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
