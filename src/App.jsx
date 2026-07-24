@@ -12,11 +12,14 @@ export default function App() {
   const [profile, setProfile] = useState(() => {
     try {
       const saved = localStorage.getItem('freshers_profile');
-      return saved ? JSON.parse(saved) : null;
+      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
     } catch {
-      return null;
+      return {name:'',email:'',department:'CSBS'};
     }
   });
+  useEffect(()=>{
+    localstorage.setItem('freshers_profile',JSON.stringify(profile));
+  },[profile]);
 
   const [growthCategories, setGrowthCategories] = useState(() => {
     try {
