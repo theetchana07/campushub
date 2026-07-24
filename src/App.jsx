@@ -866,6 +866,7 @@ function EventsPage({ cardBg, borderColor, accentColor, textMuted, darkMode, tex
     </div>
   );
 }
+
 function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColor, accentColor, textMuted, textColor }) {
   const [name, setName] = useState(profile?.name || '');
   const [email, setEmail] = useState(profile?.email || '');
@@ -998,7 +999,7 @@ function ProfilePage({ profile, setProfile, growthCategories, cardBg, borderColo
           >
             Save Profile Credentials
           </button>
-          {isSaved && <div style={{ fontSize: '12px', color: '#28a745', textAlign: 'center', fontWeight: '600' }}>Profile successfully updated and saved to localStorage!</div>}
+          {isSaved && <div style={{ fontSize: '12px', color: '#28a745', textAlign: 'center', fontWeight: '600' }}>Profile successfully updated and saved!</div>}
         </form>
       </div>
     </div>
