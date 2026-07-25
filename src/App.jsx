@@ -840,7 +840,11 @@ function EventsPage({ cardBg, borderColor, accentColor, textMuted, darkMode, tex
   const eventsList = [
     { title: "Tech Symposium 2026", date: "August 15, 2026", type: "Technical", description: "Annual inter-college coding, web design, and hardware debugging competitions." },
     { title: "Placement Readiness Bootcamp", date: "September 02, 2026", type: "Career", description: "Intensive training on aptitude, resume structuring, and mock HR interviews." },
-    { title: "AI & Machine Learning Hackathon", date: "September 20, 2026", type: "Hackathon", description: "24-hour building sprint focused on solving real-world challenges using generative AI." }
+    { title: "AI & Machine Learning Hackathon", date: "September 20, 2026", type: "Hackathon", description: "24-hour building sprint focused on solving real-world challenges using generative AI." },
+    { title: "National Level Paper Presentation", date: "October 05, 2026", type: "Academic", description: "Present your research papers across various engineering streams in front of industry experts." },
+    { title: "Inter-Departmental Code Relay", date: "October 18, 2026", type: "Coding", description: "A fast-paced team competitive programming event where members swap seats every 30 minutes." },
+    { title: "Annual Cultural Fest - Rhythm 2026", date: "November 10, 2026", type: "Cultural", description: "Two days of music, dance, fashion shows, and celebrity guest performances." },
+    { title: "Annual Sports Meet", date: "December 03, 2026", type: "Sports", description: "Track and field events, cricket, football, and indoor games tournament across departments." }
   ];
 
   return (
