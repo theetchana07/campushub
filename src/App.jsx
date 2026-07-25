@@ -380,7 +380,7 @@ function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }
       ]
     },
     {
-      name: "Engineering Mathematics",
+      name: "Engineering Mathematics 1",
       books: [
         "Grewal, B.S. and Grewal, J.S., “Numerical Methods in Engineering and Science”, Khanna Publishers, New Delhi, 11th Edition, 2017.",
         "Erwin Kreyszig, “Advanced Engineering Mathematics”, John Wiley & Sons, 10th Edition, 2017."
