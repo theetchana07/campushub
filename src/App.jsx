@@ -1110,23 +1110,23 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
   };
 
   return (
-    <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 99999 }}>
+    <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 2147483647 }}>
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
           style={{
-            width: '60px',
-            height: '60px',
+            width: '65px',
+            height: '65px',
             borderRadius: '50%',
-            backgroundColor: '#9b1c31',
+            backgroundColor: '#ff2d55',
             color: '#ffffff',
-            border: '2px solid #ffffff',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+            border: '3px solid #ffffff',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.6)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '26px'
+            fontSize: '28px'
           }}
         >
           💬
