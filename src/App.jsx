@@ -1110,58 +1110,47 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
   };
 
   return (
-    <>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          backgroundColor: accentColor,
-          color: '#fff',
-          border: 'none',
-          boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '24px',
-          zIndex: 1000,
-          transition: 'transform 0.2s ease'
-        }}
-        title="Campus Assistant"
-      >
-        💬
-      </button>
-
-      {isOpen && (
+    <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 99999 }}>
+      {!isOpen ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          style={{
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            backgroundColor: '#9b1c31',
+            color: '#ffffff',
+            border: '2px solid #ffffff',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '26px'
+          }}
+        >
+          💬
+        </button>
+      ) : (
         <div style={{
-          position: 'fixed',
-          bottom: '96px',
-          right: '24px',
           width: '360px',
           height: '480px',
-          background: cardBg,
-          border: `1px solid ${borderColor}`,
+          background: cardBg || '#121212',
+          border: `1px solid ${borderColor || '#27272a'}`,
           borderRadius: '20px',
-          boxShadow: '0 12px 40px rgba(0,0,0,0.25)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.4)',
           display: 'flex',
           flexDirection: 'column',
-          zIndex: 1000,
-          overflow: 'hidden',
-          boxSizing: 'border-box'
+          overflow: 'hidden'
         }}>
-          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${borderColor}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.02)' }}>
+          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${borderColor || '#27272a'}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.05)' }}>
             <div>
-              <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: textColor }}>Campus Assistant</h4>
+              <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: textColor || '#fff' }}>Campus Assistant</h4>
               <span style={{ fontSize: '11px', color: '#28a745', fontWeight: '600' }}>● Online</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              style={{ background: 'transparent', border: 'none', color: textMuted, fontSize: '18px', cursor: 'pointer', fontWeight: '700' }}
+              style={{ background: 'transparent', border: 'none', color: textColor || '#fff', fontSize: '20px', cursor: 'pointer', fontWeight: '700' }}
             >
               ×
             </button>
@@ -1173,8 +1162,8 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
                 key={index} 
                 style={{
                   alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-                  background: msg.sender === 'user' ? accentColor : borderColor,
-                  color: msg.sender === 'user' ? '#fff' : textColor,
+                  background: msg.sender === 'user' ? '#9b1c31' : (borderColor || '#27272a'),
+                  color: '#fff',
                   padding: '10px 14px',
                   borderRadius: '12px',
                   maxWidth: '80%',
@@ -1187,23 +1176,23 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
             ))}
           </div>
 
-          <form onSubmit={handleSend} style={{ padding: '12px', borderTop: `1px solid ${borderColor}`, display: 'flex', gap: '8px', background: cardBg }}>
+          <form onSubmit={handleSend} style={{ padding: '12px', borderTop: `1px solid ${borderColor || '#27272a'}`, display: 'flex', gap: '8px' }}>
             <input 
               type="text" 
               placeholder="Ask a question..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              style={{ flex: 1, padding: '10px 12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, outline: 'none', fontSize: '13px' }}
+              style={{ flex: 1, padding: '10px 12px', borderRadius: '8px', border: `1px solid ${borderColor || '#27272a'}`, background: 'transparent', color: textColor || '#fff', outline: 'none', fontSize: '13px' }}
             />
             <button 
               type="submit"
-              style={{ background: accentColor, color: '#fff', border: 'none', padding: '10px 14px', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', fontSize: '13px' }}
+              style={{ background: '#9b1c31', color: '#fff', border: 'none', padding: '10px 14px', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', fontSize: '13px' }}
             >
               Send
             </button>
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 }
