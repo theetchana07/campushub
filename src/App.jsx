@@ -948,7 +948,7 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
                 display: 'inline-block', 
                 fontSize: '12px', 
                 fontWeight: '700', 
-                background: darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)', 
+                background: borderColor, 
                 color: textMuted, 
                 padding: '6px 14px', 
                 borderRadius: '8px',
@@ -966,7 +966,7 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
             onClick={() => setIsEditing(true)}
             title="Edit Profile"
             style={{
-              background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)',
+              background: borderColor,
               border: `1px solid ${borderColor}`,
               borderRadius: '14px',
               width: '54px',
@@ -1016,7 +1016,7 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 placeholder="e.g. THEETCHANA" 
-                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.02)', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
               />
             </div>
             <div>
@@ -1026,7 +1026,7 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 placeholder="e.g. theetchana007@gmail.com" 
-                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.02)', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
               />
             </div>
             <div>
