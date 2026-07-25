@@ -18,7 +18,7 @@ export default function App() {
     }
   });
   useEffect(()=>{
-    localstorage.setItem('freshers_profile',JSON.stringify(profile));
+    localStorage.setItem('freshers_profile',JSON.stringify(profile));
   },[profile]);
 
   const [growthCategories, setGrowthCategories] = useState(() => {
