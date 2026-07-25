@@ -1094,7 +1094,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
     setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
     setQuery('');
 
-    // Match query against knowledge base
     const lowerQuery = userMsg.toLowerCase();
     let foundAnswer = "I'm not sure about that yet! Try asking about the library, canteen, or CSE department.";
     
@@ -1112,7 +1111,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
 
   return (
     <>
-      {/* Floating Round Icon Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{
@@ -1139,7 +1137,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
         💬
       </button>
 
-      {/* Popup Chat Window */}
       {isOpen && (
         <div style={{
           position: 'fixed',
@@ -1157,7 +1154,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
           overflow: 'hidden',
           boxSizing: 'border-box'
         }}>
-          {/* Header */}
           <div style={{ padding: '16px 20px', borderBottom: `1px solid ${borderColor}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.02)' }}>
             <div>
               <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: textColor }}>Campus Assistant</h4>
@@ -1171,7 +1167,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
             </button>
           </div>
 
-          {/* Messages Area */}
           <div style={{ flex: 1, padding: '16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {messages.map((msg, index) => (
               <div 
@@ -1192,7 +1187,6 @@ function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMu
             ))}
           </div>
 
-          {/* Input Form */}
           <form onSubmit={handleSend} style={{ padding: '12px', borderTop: `1px solid ${borderColor}`, display: 'flex', gap: '8px', background: cardBg }}>
             <input 
               type="text" 
