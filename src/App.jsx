@@ -873,35 +873,37 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
   const [name, setName] = useState(profile?.name || '');
   const [email, setEmail] = useState(profile?.email || '');
   const [department, setDepartment] = useState(profile?.department || 'CSBS');
-  const [isEditing, setIsEditing] = useState(!profile?.name); // Opens automatically if name is empty
+  const [isEditing, setIsEditing] = useState(!profile?.name);
   const [isSaved, setIsSaved] = useState(false);
 
   const handleSave = (e) => {
     e.preventDefault();
     setProfile({ name, email, department });
-    setIsEditing(false); // Hide form after saving
+    setIsEditing(false);
     setIsSaved(true);
     setTimeout(() => setIsSaved(false), 3000);
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px' }}>
+    <div style={{ width: '100%', maxWidth: '850px', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '20px', padding: '10px' }}>
       
-      {/* Profile Card view with pencil edit button */}
+      {/* Big Banner Profile Card */}
       <div style={{ 
         background: cardBg, 
-        borderRadius: '16px', 
+        borderRadius: '20px', 
         border: `1px solid ${borderColor}`, 
-        padding: '32px', 
+        padding: '48px 40px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
+        boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '32px', overflow: 'hidden', width: '100%' }}>
           <div style={{
-            width: '88px',
-            height: '88px',
+            width: '100px',
+            height: '100px',
             borderRadius: '50%',
             backgroundColor: accentColor,
             color: '#fff',
@@ -909,35 +911,36 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: '800',
-            fontSize: '34px',
+            fontSize: '40px',
             textTransform: 'uppercase',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            boxShadow: '0 6px 16px rgba(0,0,0,0.2)',
             flexShrink: 0
           }}>
             {name ? name.charAt(0) : 'U'}
           </div>
 
-          <div style={{ overflow: 'hidden' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '700', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {name || 'Student Profile'}
-              </h2>
-            </div>
-            <p style={{ color: textMuted, margin: '0 0 10px 0', fontSize: '14px' }}>
+          <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <h2 style={{ fontSize: '32px', fontWeight: '800', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {name || 'Student Profile'}
+            </h2>
+            <p style={{ color: textMuted, margin: 0, fontSize: '16px', fontWeight: '500' }}>
               {email || 'No email registered yet'}
             </p>
-            <span style={{ 
-              display: 'inline-block', 
-              fontSize: '11px', 
-              fontWeight: '700', 
-              background: 'rgba(155, 28, 49, 0.1)', 
-              color: accentColor, 
-              padding: '4px 12px', 
-              borderRadius: '6px',
-              textTransform: 'uppercase'
-            }}>
-              DEPARTMENT: {department}
-            </span>
+            <div>
+              <span style={{ 
+                display: 'inline-block', 
+                fontSize: '12px', 
+                fontWeight: '700', 
+                background: 'rgba(155, 28, 49, 0.12)', 
+                color: accentColor, 
+                padding: '6px 14px', 
+                borderRadius: '8px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
+              }}>
+                DEPARTMENT: {department}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -950,14 +953,15 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
               background: 'transparent',
               border: `1px solid ${borderColor}`,
               borderRadius: '50%',
-              width: '42px',
-              height: '42px',
+              width: '50px',
+              height: '50px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               color: textColor,
               flexShrink: 0,
+              fontSize: '18px',
               transition: 'all 0.2s'
             }}
           >
@@ -967,18 +971,18 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
       </div>
 
       {isSaved && (
-        <div style={{ fontSize: '13px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '10px', borderRadius: '8px' }}>
+        <div style={{ fontSize: '14px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '12px', borderRadius: '10px' }}>
           Profile successfully updated and saved!
         </div>
       )}
 
-      {/* Edit Form (Only shows when isEditing is true) */}
+      {/* Edit Form */}
       {isEditing && (
-        <div style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '24px', color: textColor }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ background: cardBg, borderRadius: '20px', border: `1px solid ${borderColor}`, padding: '32px', color: textColor, boxShadow: '0 8px 30px rgba(0,0,0,0.12)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
             <div>
-              <h3 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 4px 0', color: textColor }}>Edit Credentials</h3>
-              <p style={{ color: textMuted, margin: 0, fontSize: '13px' }}>Update your identification profile details below.</p>
+              <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 4px 0', color: textColor }}>Edit Credentials</h3>
+              <p style={{ color: textMuted, margin: 0, fontSize: '14px' }}>Update your identification profile details below.</p>
             </div>
             <button 
               onClick={() => setIsEditing(false)}
@@ -988,33 +992,33 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
             </button>
           </div>
 
-          <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', marginBottom: '6px', color: textMuted }}>Full Name</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Full Name</label>
               <input 
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 placeholder="e.g. THEETCHANA" 
-                style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none' }}
+                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', marginBottom: '6px', color: textMuted }}>Email Address</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Email Address</label>
               <input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 placeholder="e.g. theetchana007@gmail.com" 
-                style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none' }}
+                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', marginBottom: '6px', color: textMuted }}>Primary Department Code</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Primary Department Code</label>
               <select 
                 value={department} 
                 onChange={(e) => setDepartment(e.target.value)}
-                style={{ width: '100%', padding: '12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none' }}
+                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
               >
                 <option value="CSBS">CSBS</option>
                 <option value="CSE">CSE</option>
@@ -1034,11 +1038,12 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
                 background: accentColor, 
                 color: '#fff', 
                 border: 'none', 
-                padding: '12px', 
-                borderRadius: '8px', 
-                fontWeight: '600', 
+                padding: '14px', 
+                borderRadius: '10px', 
+                fontWeight: '700', 
                 cursor: 'pointer',
-                marginTop: '8px'
+                marginTop: '10px',
+                fontSize: '15px'
               }}
             >
               Save Profile Credentials
