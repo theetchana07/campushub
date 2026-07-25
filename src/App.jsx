@@ -885,84 +885,100 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '850px', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '20px', padding: '10px' }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '24px', boxSizing: 'border-box' }}>
       
-      {/* Big Banner Profile Card */}
+      {/* Full-width Executive Block Banner */}
       <div style={{ 
         background: cardBg, 
-        borderRadius: '20px', 
+        borderRadius: '24px', 
         border: `1px solid ${borderColor}`, 
-        padding: '48px 40px', 
+        padding: '56px 48px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'space-between',
-        boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+        boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
+        width: '100%',
+        boxSizing: 'border-box',
         position: 'relative',
         overflow: 'hidden'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px', overflow: 'hidden', width: '100%' }}>
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '100%', background: `linear-gradient(135deg, transparent, rgba(155, 28, 49, 0.05))`, pointerEvents: 'none' }}></div>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '36px', overflow: 'hidden', width: '100%' }}>
           <div style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '50%',
+            width: '110px',
+            height: '110px',
+            borderRadius: '24px',
             backgroundColor: accentColor,
             color: '#fff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontWeight: '800',
-            fontSize: '40px',
+            fontWeight: '900',
+            fontSize: '44px',
             textTransform: 'uppercase',
-            boxShadow: '0 6px 16px rgba(0,0,0,0.2)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
             flexShrink: 0
           }}>
             {name ? name.charAt(0) : 'U'}
           </div>
 
-          <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <h2 style={{ fontSize: '32px', fontWeight: '800', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+            <h2 style={{ fontSize: '36px', fontWeight: '900', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '-0.5px' }}>
               {name || 'Student Profile'}
             </h2>
-            <p style={{ color: textMuted, margin: 0, fontSize: '16px', fontWeight: '500' }}>
+            <p style={{ color: textMuted, margin: 0, fontSize: '17px', fontWeight: '500' }}>
               {email || 'No email registered yet'}
             </p>
-            <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
+              <span style={{ 
+                display: 'inline-block', 
+                fontSize: '12px', 
+                fontWeight: '800', 
+                background: 'rgba(155, 28, 49, 0.15)', 
+                color: accentColor, 
+                padding: '6px 16px', 
+                borderRadius: '8px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
+              }}>
+                DEPARTMENT: {department}
+              </span>
               <span style={{ 
                 display: 'inline-block', 
                 fontSize: '12px', 
                 fontWeight: '700', 
-                background: 'rgba(155, 28, 49, 0.12)', 
-                color: accentColor, 
+                background: darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)', 
+                color: textMuted, 
                 padding: '6px 14px', 
                 borderRadius: '8px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                textTransform: 'uppercase'
               }}>
-                DEPARTMENT: {department}
+                FIRST YEAR
               </span>
             </div>
           </div>
         </div>
 
-        {/* Pencil Edit Icon Button */}
+        {/* Professional Pencil Edit Button */}
         {!isEditing && (
           <button 
             onClick={() => setIsEditing(true)}
             title="Edit Profile"
             style={{
-              background: 'transparent',
+              background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)',
               border: `1px solid ${borderColor}`,
-              borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              borderRadius: '14px',
+              width: '54px',
+              height: '54px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               color: textColor,
-              flexShrink: 0,
-              fontSize: '18px',
-              transition: 'all 0.2s'
+              flexShrink: '0',
+              fontSize: '20px',
+              transition: 'all 0.2s ease'
             }}
           >
             ✏️
@@ -971,54 +987,54 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
       </div>
 
       {isSaved && (
-        <div style={{ fontSize: '14px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '12px', borderRadius: '10px' }}>
+        <div style={{ fontSize: '14px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(40, 167, 69, 0.2)' }}>
           Profile successfully updated and saved!
         </div>
       )}
 
-      {/* Edit Form */}
+      {/* Edit Form Block */}
       {isEditing && (
-        <div style={{ background: cardBg, borderRadius: '20px', border: `1px solid ${borderColor}`, padding: '32px', color: textColor, boxShadow: '0 8px 30px rgba(0,0,0,0.12)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+        <div style={{ background: cardBg, borderRadius: '24px', border: `1px solid ${borderColor}`, padding: '40px', color: textColor, boxShadow: '0 12px 40px rgba(0,0,0,0.15)', width: '100%', boxSizing: 'border-box' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
             <div>
-              <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 4px 0', color: textColor }}>Edit Credentials</h3>
-              <p style={{ color: textMuted, margin: 0, fontSize: '14px' }}>Update your identification profile details below.</p>
+              <h3 style={{ fontSize: '20px', fontWeight: '800', margin: '0 0 6px 0', color: textColor }}>Edit Profile Credentials</h3>
+              <p style={{ color: textMuted, margin: 0, fontSize: '14px' }}>Modify your official university account details below.</p>
             </div>
             <button 
               onClick={() => setIsEditing(false)}
-              style={{ background: 'transparent', border: 'none', color: textMuted, cursor: 'pointer', fontSize: '14px', fontWeight: '600' }}
+              style={{ background: 'transparent', border: `1px solid ${borderColor}`, padding: '8px 16px', borderRadius: '8px', color: textMuted, cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
             >
               Cancel
             </button>
           </div>
 
-          <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Full Name</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Full Name</label>
               <input 
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 placeholder="e.g. THEETCHANA" 
-                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.02)', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Email Address</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email Address</label>
               <input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 placeholder="e.g. theetchana007@gmail.com" 
-                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.02)', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '8px', color: textMuted }}>Primary Department Code</label>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Primary Department Code</label>
               <select 
                 value={department} 
                 onChange={(e) => setDepartment(e.target.value)}
-                style={{ width: '100%', padding: '14px', borderRadius: '10px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px' }}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
               >
                 <option value="CSBS">CSBS</option>
                 <option value="CSE">CSE</option>
@@ -1038,12 +1054,14 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
                 background: accentColor, 
                 color: '#fff', 
                 border: 'none', 
-                padding: '14px', 
-                borderRadius: '10px', 
-                fontWeight: '700', 
+                padding: '16px', 
+                borderRadius: '12px', 
+                fontWeight: '800', 
                 cursor: 'pointer',
-                marginTop: '10px',
-                fontSize: '15px'
+                marginTop: '12px',
+                fontSize: '15px',
+                letterSpacing: '0.5px',
+                boxShadow: '0 4px 14px rgba(155, 28, 49, 0.4)'
               }}
             >
               Save Profile Credentials
