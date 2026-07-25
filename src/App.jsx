@@ -1072,3 +1072,144 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
     </div>
   );
 }
+function FloatingAssistant({ cardBg, borderColor, accentColor, textColor, textMuted }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [messages, setMessages] = useState([
+    { sender: 'bot', text: 'Hi! Ask me anything about campus locations or facilities (e.g., library, canteen).' }
+  ]);
+
+  const campusKnowledge = [
+    { keywords: ['library', 'book', 'reading'], answer: 'The central library is located in Block A, right next to the administrative building.' },
+    { keywords: ['canteen', 'cafeteria', 'food', 'eat'], answer: 'The main canteen is situated near the student activity center and the sports ground.' },
+    { keywords: ['cse', 'computer', 'tech'], answer: 'The Computer Science department is housed on the 2nd floor of the Tech Block.' },
+    { keywords: ['hours', 'timing', 'open', 'close'], answer: 'The campus is open from 8:30 AM to 4:30 PM, Monday through Saturday.' }
+  ];
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+
+    const userMsg = query.trim();
+    setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
+    setQuery('');
+
+    // Match query against knowledge base
+    const lowerQuery = userMsg.toLowerCase();
+    let foundAnswer = "I'm not sure about that yet! Try asking about the library, canteen, or CSE department.";
+    
+    for (const item of campusKnowledge) {
+      if (item.keywords.some(kw => lowerQuery.includes(kw))) {
+        foundAnswer = item.answer;
+        break;
+      }
+    }
+
+    setTimeout(() => {
+      setMessages(prev => [...prev, { sender: 'bot', text: foundAnswer }]);
+    }, 400);
+  };
+
+  return (
+    <>
+      {/* Floating Round Icon Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          backgroundColor: accentColor,
+          color: '#fff',
+          border: 'none',
+          boxShadow: '0 6px 20px rgba(0,0,0,0.3)',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '24px',
+          zIndex: 1000,
+          transition: 'transform 0.2s ease'
+        }}
+        title="Campus Assistant"
+      >
+        💬
+      </button>
+
+      {/* Popup Chat Window */}
+      {isOpen && (
+        <div style={{
+          position: 'fixed',
+          bottom: '96px',
+          right: '24px',
+          width: '360px',
+          height: '480px',
+          background: cardBg,
+          border: `1px solid ${borderColor}`,
+          borderRadius: '20px',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.25)',
+          display: 'flex',
+          flexDirection: 'column',
+          zIndex: 1000,
+          overflow: 'hidden',
+          boxSizing: 'border-box'
+        }}>
+          {/* Header */}
+          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${borderColor}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.02)' }}>
+            <div>
+              <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: textColor }}>Campus Assistant</h4>
+              <span style={{ fontSize: '11px', color: '#28a745', fontWeight: '600' }}>● Online</span>
+            </div>
+            <button 
+              onClick={() => setIsOpen(false)}
+              style={{ background: 'transparent', border: 'none', color: textMuted, fontSize: '18px', cursor: 'pointer', fontWeight: '700' }}
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Messages Area */}
+          <div style={{ flex: 1, padding: '16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {messages.map((msg, index) => (
+              <div 
+                key={index} 
+                style={{
+                  alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
+                  background: msg.sender === 'user' ? accentColor : borderColor,
+                  color: msg.sender === 'user' ? '#fff' : textColor,
+                  padding: '10px 14px',
+                  borderRadius: '12px',
+                  maxWidth: '80%',
+                  fontSize: '13px',
+                  lineHeight: '1.4'
+                }}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+
+          {/* Input Form */}
+          <form onSubmit={handleSend} style={{ padding: '12px', borderTop: `1px solid ${borderColor}`, display: 'flex', gap: '8px', background: cardBg }}>
+            <input 
+              type="text" 
+              placeholder="Ask a question..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              style={{ flex: 1, padding: '10px 12px', borderRadius: '8px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, outline: 'none', fontSize: '13px' }}
+            />
+            <button 
+              type="submit"
+              style={{ background: accentColor, color: '#fff', border: 'none', padding: '10px 14px', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', fontSize: '13px' }}
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      )}
+    </>
+  );
+}
