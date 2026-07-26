@@ -1,109 +1,151 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Home, BookOpen, TrendingUp, Users, Calendar, User, 
-  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
+import { 
+  Home, BookOpen, TrendingUp, Users, Calendar, User, 
+  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
 import gemPoster from '../tada.png';
 import FloatingAssistant from './FloatingAssistant';
+import ProfilePage from './ProfilePage';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [activeTab, setActiveTab] = useState('home');
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_profile');
-      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
-    } catch {
-      return {name:'',email:'',department:'CSBS'};
-    }
-  });
-  useEffect(()=>{
-    localStorage.setItem('freshers_profile',JSON.stringify(profile));
-  },[profile]);
+  const [profile, setProfile] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_profile');
+      return saved ? JSON.parse(saved) : { name: '', email: '', department: 'CSBS' };
+    } catch {
+      return { name: '', email: '', department: 'CSBS' };
+    }
+  });
 
-  const [growthCategories, setGrowthCategories] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_growth_categories');
-      return saved ? JSON.parse(saved) : {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    } catch {
-      return {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    }
-  });
+  useEffect(() => {
+    localStorage.setItem('freshers_profile', JSON.stringify(profile));
+  }, [profile]);
+
+  const [growthCategories, setGrowthCategories] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_growth_categories');
+      return saved ? JSON.parse(saved) : {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    } catch {
+      return {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    }
+  });
+
+  const cardBg = darkMode ? '#1e1e1e' : '#ffffff';
+  const borderColor = darkMode ? '#333333' : '#e2e8f0';
+  const accentColor = '#9b1c31';
+  const textColor = darkMode ? '#ffffff' : '#1a202c';
+  const textMuted = darkMode ? '#a0aec0' : '#718096';
+
+  return (
+    <div style={{ backgroundColor: darkMode ? '#121212' : '#f7fafc', minHeight: '100vh', color: textColor, position: 'relative' }}>
+      
+      <div style={{ padding: '32px', maxWidth: '1200px', margin: '0 auto' }}>
+        {activeTab === 'home' && (
+          <div>
+            <h1>Welcome to Freshers Hub</h1>
+          </div>
+        )}
+        
+        {activeTab === 'profile' && (
+          <ProfilePage 
+            profile={profile} 
+            setProfile={setProfile} 
+            cardBg={cardBg} 
+            borderColor={borderColor} 
+            accentColor={accentColor} 
+            textMuted={textMuted} 
+            textColor={textColor} 
+          />
+        )}
+      </div>
+
+      <FloatingAssistant 
+        cardBg={cardBg} 
+        borderColor={borderColor} 
+        accentColor={accentColor} 
+        textColor={textColor} 
+        textMuted={textMuted} 
+      />
+    </div>
+  );
+}
   
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
