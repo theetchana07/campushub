@@ -3,6 +3,7 @@ import {
   Home, BookOpen, TrendingUp, Users, Calendar, User,
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
+import tadaPoster from './tada.png';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
