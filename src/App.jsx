@@ -103,7 +103,8 @@ export default function App() {
         }
       };
     }
-  });(here is the code for that dont change aanything just add it and give)
+  });
+  
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
