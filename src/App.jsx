@@ -265,7 +265,36 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
-      {/* HERO BANNER: Welcome Quote & Intro */}
+      {/* 1. GEMINI CREATED POSTER DISPLAY (Featured at top, larger & full-width) */}
+      <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '13px', fontWeight: '700', textTransform: 'uppercase' }}>
+            <Sparkles size={18} /> Gemini Created Poster
+          </div>
+          <span style={{ fontSize: '11px', background: 'rgba(155, 28, 49, 0.1)', color: accentColor, padding: '4px 10px', borderRadius: '4px', fontWeight: '700' }}>FEATURED</span>
+        </div>
+        
+        {/* Poster Image Container */}
+        <div style={{ 
+          flex: 1, 
+          minHeight: '260px', 
+          borderRadius: '12px', 
+          border: `1px solid ${borderColor}`, 
+          overflow: 'hidden',
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
+        }}>
+          <img 
+            src={gemPoster} 
+            alt="Gemini Poster" 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '380px', display: 'block' }} 
+          />
+        </div>
+      </div>
+
+      {/* 2. HERO BANNER: Welcome Freshers writings */}
       <div style={{ 
         background: cardBg, 
         padding: '32px', 
@@ -293,55 +322,22 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
         </p>
       </div>
 
-      {/* GRID SECTION: Quick Info & Gemini Poster Space */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-        
-        {/* Quick Portal Status */}
-        <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
-              <ShieldCheck size={16} /> Verified Portal
-            </div>
-            <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 8px 0', color: textColor }}>Semester Protocol Active</h3>
-            <p style={{ color: textMuted, lineHeight: '1.5', fontSize: '13.5px', margin: 0 }}>
-              All tracking parameters, course references, and department pathways are online and ready for your academic year.
-            </p>
+      {/* 3. QUICK PORTAL STATUS: Semester Protocol Active */}
+      <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
+            <ShieldCheck size={16} /> Verified Portal
           </div>
-          <div style={{ marginTop: '20px', padding: '12px', borderRadius: '8px', background: darkMode ? '#2A1F22' : '#EFE8E9', fontSize: '12px', fontWeight: '600', color: accentColor, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
-          </div>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 8px 0', color: textColor }}>Semester Protocol Active</h3>
+          <p style={{ color: textMuted, lineHeight: '1.5', fontSize: '13.5px', margin: 0 }}>
+            All tracking parameters, course references, and department pathways are online and ready for your academic year.
+          </p>
         </div>
-
-        {/* GEMINI CREATED POSTER DISPLAY */}
-        <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
-              <Sparkles size={16} /> Gemini Created Poster
-            </div>
-            <span style={{ fontSize: '10px', background: 'rgba(155, 28, 49, 0.1)', color: accentColor, padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>FEATURED</span>
-          </div>
-          
-          {/* Poster Image Container */}
-          <div style={{ 
-            flex: 1, 
-            minHeight: '180px', 
-            borderRadius: '12px', 
-            border: `1px solid ${borderColor}`, 
-            overflow: 'hidden',
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
-          }}>
-            <img 
-              src={gemPoster} 
-              alt="Gemini Poster" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '220px', display: 'block' }} 
-            />
-          </div>
+        <div style={{ marginTop: '20px', padding: '12px', borderRadius: '8px', background: darkMode ? '#2A1F22' : '#EFE8E9', fontSize: '12px', fontWeight: '600', color: accentColor, display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
         </div>
-
       </div>
+
     </div>
   );
 }
