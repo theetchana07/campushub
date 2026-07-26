@@ -1,108 +1,107 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Home, BookOpen, TrendingUp, Users, Calendar, User, 
-  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
+import {
+  Home, BookOpen, TrendingUp, Users, Calendar, User,
+  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
-import gemPoster from '../tada.png';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [activeTab, setActiveTab] = useState('home');
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_profile');
-      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
-    } catch {
-      return {name:'',email:'',department:'CSBS'};
-    }
-  });
-  useEffect(()=>{
-    localStorage.setItem('freshers_profile',JSON.stringify(profile));
-  },[profile]);
+  const [profile, setProfile] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_profile');
+      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
+    } catch {
+      return {name:'',email:'',department:'CSBS'};
+    }
+  });
+  useEffect(()=>{
+    localStorage.setItem('freshers_profile',JSON.stringify(profile));
+  },[profile]);
 
-  const [growthCategories, setGrowthCategories] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_growth_categories');
-      return saved ? JSON.parse(saved) : {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    } catch {
-      return {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    }
-  });
+  const [growthCategories, setGrowthCategories] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_growth_categories');
+      return saved ? JSON.parse(saved) : {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    } catch {
+      return {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    }
+  });
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -127,11 +126,22 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           justifyContent: 'center', 
           background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
         }}>
-          <img 
-            src={gemPoster} 
-            alt="Gemini Poster" 
-            style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '380px', display: 'block' }} 
-          />
+          <div style={{
+            width: '100%',
+            minHeight: '260px',
+            maxHeight: '380px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: `linear-gradient(135deg, ${darkMode ? '#2A1F22' : '#EFE8E9'} 0%, ${accentColor}22 100%)`,
+            color: accentColor,
+            fontWeight: '700',
+            fontSize: '14px',
+            letterSpacing: '1px',
+            textTransform: 'uppercase'
+          }}>
+            Gemini Poster
+          </div>
         </div>
       </div>
 
@@ -909,6 +919,94 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
           </form>
         </div>
       )}
+    </div>
+  );
+}
+
+  const theme = darkMode
+    ? {
+        bg: '#1A1315',
+        cardBg: '#21181A',
+        borderColor: '#3A2A2D',
+        textColor: '#F5F0F0',
+        textMuted: '#A89A9C',
+        accentColor: '#C73E55'
+      }
+    : {
+        bg: '#FAF7F7',
+        cardBg: '#FFFFFF',
+        borderColor: '#E5E0E0',
+        textColor: '#1A1315',
+        textMuted: '#6B5D5F',
+        accentColor: '#9B1C31'
+    };
+
+  const navItems = [
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'academic', label: 'Academics', icon: BookOpen },
+    { id: 'growth', label: 'Growth', icon: TrendingUp },
+    { id: 'about', label: 'Departments', icon: Users },
+    { id: 'events', label: 'Events', icon: Calendar },
+    { id: 'profile', label: 'Profile', icon: User }
+  ];
+
+  return (
+    <div style={{ minHeight: '100vh', background: theme.bg, color: theme.textColor, transition: 'background 0.3s ease, color 0.3s ease' }}>
+      {/* Top Bar */}
+      <header style={{ position: 'sticky', top: 0, zIndex: 10, background: theme.cardBg, borderBottom: `1px solid ${theme.borderColor}`, padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: theme.accentColor, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '16px' }}>U</div>
+          <span style={{ fontSize: '18px', fontWeight: '800', color: theme.textColor }}>UniSync</span>
+        </div>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          style={{ background: 'transparent', border: `1px solid ${theme.borderColor}`, borderRadius: '10px', padding: '8px', cursor: 'pointer', color: theme.textColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          title="Toggle theme"
+        >
+          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+      </header>
+
+      {/* Page Content */}
+      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 20px 100px 20px' }}>
+        {activeTab === 'home' && <HomePage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
+        {activeTab === 'academic' && <AcademicPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} textColor={theme.textColor} />}
+        {activeTab === 'growth' && <GrowthPage growthCategories={growthCategories} setGrowthCategories={setGrowthCategories} cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
+        {activeTab === 'about' && <AboutPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
+        {activeTab === 'events' && <EventsPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
+        {activeTab === 'profile' && <ProfilePage profile={profile} setProfile={setProfile} cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} textColor={theme.textColor} />}
+      </main>
+
+      {/* Bottom Navigation */}
+      <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: theme.cardBg, borderTop: `1px solid ${theme.borderColor}`, display: 'flex', justifyContent: 'space-around', padding: '8px 0', zIndex: 10 }}>
+        {navItems.map(item => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '2px',
+                cursor: 'pointer',
+                color: isActive ? theme.accentColor : theme.textMuted,
+                padding: '6px 10px',
+                borderRadius: '10px',
+                fontSize: '10px',
+                fontWeight: isActive ? '700' : '500'
+              }}
+            >
+              <Icon size={20} />
+              <span>{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
