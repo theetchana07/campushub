@@ -116,37 +116,30 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           </div>
         </div>
         
-        {/* Poster Image Container */}
-        <div style={{ 
-          flex: 1, 
-          minHeight: '260px', 
-          borderRadius: '12px', 
-          border: `1px solid ${borderColor}`, 
-          overflow: 'hidden',
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
-        }}>
-          <div style={{
-            width: '100%',
-            minHeight: '260px',
-            maxHeight: '380px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: `linear-gradient(135deg, ${darkMode ? '#2A1F22' : '#EFE8E9'} 0%, ${accentColor}22 100%)`,
-            color: accentColor,
-            fontWeight: '700',
-            fontSize: '14px',
-            letterSpacing: '1px',
-            textTransform: 'uppercase'
-          }}>
-            Gemini Poster
-          </div>
-        </div>
-      </div>
-      
+      {/* Poster Image Container */}
+        <div style={{ 
+          flex: 1, 
+          minHeight: '260px', 
+          borderRadius: '12px', 
+          border: `1px solid ${borderColor}`, 
+          overflow: 'hidden',
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
+        }}>
+          <img 
+            src={tadaPoster} 
+            alt="Gemini Poster" 
+            style={{
+              width: '100%',
+              height: '100%',
+              maxHeight: '380px',
+              objectFit: 'cover', // Ensures the image scales nicely inside the box without distorting
+              display: 'block'
+            }}
+          />
+        </div>
       {/* 2. HERO BANNER: Welcome Freshers writings */}
       <div style={{ 
         background: cardBg, 
