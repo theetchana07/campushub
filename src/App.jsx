@@ -265,13 +265,12 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
-      {/* 1. GEMINI CREATED POSTER DISPLAY (Featured at top, larger & full-width) */}
+      {/* 1. POSTER DISPLAY (Text and Featured tag removed, sparkle icon kept) */}
       <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '13px', fontWeight: '700', textTransform: 'uppercase' }}>
-            <Sparkles size={18} /> Gemini Created Poster
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: accentColor }}>
+            <Sparkles size={18} />
           </div>
-          <span style={{ fontSize: '11px', background: 'rgba(155, 28, 49, 0.1)', color: accentColor, padding: '4px 10px', borderRadius: '4px', fontWeight: '700' }}>FEATURED</span>
         </div>
         
         {/* Poster Image Container */}
@@ -341,7 +340,6 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
     </div>
   );
 }
-
 function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }) {
   const [openSubject, setOpenSubject] = useState(null);
 
