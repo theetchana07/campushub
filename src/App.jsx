@@ -1069,18 +1069,12 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
         </div>
       )}
     </div>
-    </div>
-    </div>
-  </div>
-
-  <FloatingAssistant 
+    <FloatingAssistant 
     cardBg={cardBg} 
     borderColor={borderColor} 
     accentColor={accentColor} 
     textColor={textColor} 
     textMuted={textMuted} 
-  />
-);
-}
+   />
   );
 }
