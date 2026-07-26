@@ -4,6 +4,7 @@ import {
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
 import tadaPoster from '../tada.png';
+import FloatingAssistant from './FloatingAssistant';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
