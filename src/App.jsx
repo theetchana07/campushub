@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Home, BookOpen, TrendingUp, Users, Calendar, User,
+import { 
+  Home, BookOpen, TrendingUp, Users, Calendar, User, 
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
 import tadaPoster from '../tada.png';
@@ -18,94 +18,18 @@ export default function App() {
       return {name:'',email:'',department:'CSBS'};
     }
   });
-  useEffect(()=>{
-    localStorage.setItem('freshers_profile',JSON.stringify(profile));
-  },[profile]);
 
-  const [growthCategories, setGrowthCategories] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_growth_categories');
-      return saved ? JSON.parse(saved) : {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    } catch {
-      return {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    }
-  });
-function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
-  eturn (
+  useEffect(() => {
+    localStorage.setItem('freshers_profile', JSON.stringify(profile));
+  }, [profile]);
+
+  const cardBg = darkMode ? '#1e1e1e' : '#ffffff';
+  const borderColor = darkMode ? '#333333' : '#e2e8f0';
+  const accentColor = '#9b1c31';
+  const textColor = darkMode ? '#ffffff' : '#1a202c';
+  const textMuted = darkMode ? '#a0aec0' : '#718096';
+
+  return (
     <div style={{ backgroundColor: darkMode ? '#121212' : '#f7fafc', minHeight: '100vh', color: textColor, position: 'relative' }}>
       <div style={{ padding: '32px', maxWidth: '1200px', margin: '0 auto' }}>
         {activeTab === 'home' && (
@@ -119,6 +43,14 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           />
         )}
       </div>
+
+      <FloatingAssistant 
+        cardBg={cardBg} 
+        borderColor={borderColor} 
+        accentColor={accentColor} 
+        textColor={textColor} 
+        textMuted={textMuted} 
+      />
     </div>
   );
 }
@@ -126,7 +58,7 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* 1. POSTER DISPLAY (Text and Featured tag removed, sparkle icon kept) */}
+      {/* 1. POSTER DISPLAY */}
       <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
           <div style={{ display: 'flex', alignItems: 'center', color: accentColor }}>
@@ -134,7 +66,6 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           </div>
         </div>
         
-        {/* Poster Image Container */}
         <div style={{ 
           flex: 1, 
           minHeight: '260px', 
@@ -165,7 +96,7 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
         </div>
       </div>
       
-      {/* 2. HERO BANNER: Welcome Freshers writings */}
+      {/* 2. HERO BANNER */}
       <div style={{ 
         background: cardBg, 
         padding: '32px', 
@@ -193,7 +124,7 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
         </p>
       </div>
 
-      {/* 3. QUICK PORTAL STATUS: Semester Protocol Active */}
+      {/* 3. QUICK PORTAL STATUS */}
       <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
@@ -208,7 +139,6 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
         </div>
       </div>
-
     </div>
   );
 }
