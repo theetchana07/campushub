@@ -123,4 +123,4 @@ export default function FloatingAssistant({ cardBg, borderColor, accentColor, te
       )}
     </div>
   );
-}
+} // <--- Make sure it ends cleanly with just this brace
