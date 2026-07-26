@@ -8,10 +8,10 @@ export default function FloatingAssistant({ cardBg, borderColor, accentColor, te
   ]);
 
   const campusKnowledge = [
-    { keywords: ['library', 'book', 'reading'], answer: 'The central library is located in Block A, right next to the administrative building.' },
+    { keywords: ['library', 'book', 'reading'], answer: 'The central library is located in BD Block, right opposite to the canteen.' },
     { keywords: ['canteen', 'cafeteria', 'food', 'eat'], answer: 'The main canteen is situated near the student activity center and the sports ground.' },
-    { keywords: ['cse', 'computer', 'tech'], answer: 'The Computer Science department is housed on the 2nd floor of the Tech Block.' },
-    { keywords: ['hours', 'timing', 'open', 'close'], answer: 'The campus is open from 8:30 AM to 4:30 PM, Monday through Saturday.' }
+    { keywords: ['cse', 'computer', 'tech'], answer: 'The Computer Science department is housed on the 2nd floor of the RV Block.' },
+    { keywords: ['hours', 'timing', 'open', 'close'], answer: 'The campus is open from 8:30 AM to 4:45 PM, Monday through Saturday.' }
   ];
 
   const handleSend = (e) => {
