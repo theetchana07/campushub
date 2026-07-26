@@ -104,9 +104,27 @@ export default function App() {
     }
   });
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
+  eturn (
+    <div style={{ backgroundColor: darkMode ? '#121212' : '#f7fafc', minHeight: '100vh', color: textColor, position: 'relative' }}>
+      <div style={{ padding: '32px', maxWidth: '1200px', margin: '0 auto' }}>
+        {activeTab === 'home' && (
+          <HomePage 
+            cardBg={cardBg} 
+            borderColor={borderColor} 
+            accentColor={accentColor} 
+            textMuted={textMuted} 
+            darkMode={darkMode} 
+            textColor={textColor} 
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      
       {/* 1. POSTER DISPLAY (Text and Featured tag removed, sparkle icon kept) */}
       <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
@@ -145,7 +163,7 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           </div>
         </div>
       </div>
-
+      
       {/* 2. HERO BANNER: Welcome Freshers writings */}
       <div style={{ 
         background: cardBg, 
