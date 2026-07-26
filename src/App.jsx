@@ -1,122 +1,121 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Home, BookOpen, TrendingUp, Users, Calendar, User,
-  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
+  Home, BookOpen, TrendingUp, Users, Calendar, User,
+  Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
-import tadaPoster from '../tada.png';
-import FloatingAssistant from './FloatingAssistant.jsx';
+import tadaPoster from './tada.png';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [activeTab, setActiveTab] = useState('home');
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_profile');
-      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
-    } catch {
-      return {name:'',email:'',department:'CSBS'};
-    }
-  });
-  useEffect(()=>{
-    localStorage.setItem('freshers_profile',JSON.stringify(profile));
-  },[profile]);
+  const [profile, setProfile] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_profile');
+      return saved ? JSON.parse(saved) : {name:'',email:'',department:'CSBS'};
+    } catch {
+      return {name:'',email:'',department:'CSBS'};
+    }
+  });
+  useEffect(()=>{
+    localStorage.setItem('freshers_profile',JSON.stringify(profile));
+  },[profile]);
 
-  const [growthCategories, setGrowthCategories] = useState(() => {
-    try {
-      const saved = localStorage.getItem('freshers_growth_categories');
-      return saved ? JSON.parse(saved) : {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    } catch {
-      return {
-        'Problem Solving': {
-          description: 'Master core programming languages and algorithmic logic.',
-          skills: {
-            'Basic C Programming': false,
-            'Python Fundamentals': false,
-            'Data Structures & Algorithms': false,
-            'LeetCode / HackerRank Basics': false
-          }
-        },
-        'Designing & Web': {
-          description: 'Learn modern web development and UI/UX design workflows.',
-          skills: {
-            'HTML, CSS & JavaScript': false,
-            'React / Modern Frameworks': false,
-            'Figma & UI Basics': false,
-            'Responsive Web Design': false
-          }
-        },
-        'Developer Tools': {
-          description: 'Essential version control and command line utilities.',
-          skills: {
-            'Git & GitHub Basics': false,
-            'Terminal & Command Line': false,
-            'Docker & Containerization': false,
-            'Postman / API Testing': false
-          }
-        },
-        'Professional & Soft Skills': {
-          description: 'Productivity, scheduling, and engineering communication.',
-          skills: {
-            'Time Management & Scheduling': false,
-            'Public Speaking / Networking': false,
-            'Resume Building & LinkedIn': false,
-            'Technical Documentation': false
-          }
-        }
-      };
-    }
-  });
-
+  const [growthCategories, setGrowthCategories] = useState(() => {
+    try {
+      const saved = localStorage.getItem('freshers_growth_categories');
+      return saved ? JSON.parse(saved) : {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    } catch {
+      return {
+        'Problem Solving': {
+          description: 'Master core programming languages and algorithmic logic.',
+          skills: {
+            'Basic C Programming': false,
+            'Python Fundamentals': false,
+            'Data Structures & Algorithms': false,
+            'LeetCode / HackerRank Basics': false
+          }
+        },
+        'Designing & Web': {
+          description: 'Learn modern web development and UI/UX design workflows.',
+          skills: {
+            'HTML, CSS & JavaScript': false,
+            'React / Modern Frameworks': false,
+            'Figma & UI Basics': false,
+            'Responsive Web Design': false
+          }
+        },
+        'Developer Tools': {
+          description: 'Essential version control and command line utilities.',
+          skills: {
+            'Git & GitHub Basics': false,
+            'Terminal & Command Line': false,
+            'Docker & Containerization': false,
+            'Postman / API Testing': false
+          }
+        },
+        'Professional & Soft Skills': {
+          description: 'Productivity, scheduling, and engineering communication.',
+          skills: {
+            'Time Management & Scheduling': false,
+            'Public Speaking / Networking': false,
+            'Resume Building & LinkedIn': false,
+            'Technical Documentation': false
+          }
+        }
+      };
+    }
+  });
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* 1. POSTER DISPLAY (Text and Featured tag removed, sparkle icon kept) */}
-      <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', color: accentColor }}>
-            <Sparkles size={18} />
-          </div>
-        </div>
-        
-      {/* Poster Image Container */}
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      
+      {/* 1. POSTER DISPLAY (Text and Featured tag removed, sparkle icon kept) */}
+      <div style={{ background: cardBg, padding: '28px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', color: accentColor }}>
+            <Sparkles size={18} />
+          </div>
+        </div>
+        
+        {/* Poster Image Container */}
         <div style={{ 
           flex: 1, 
           minHeight: '260px', 
@@ -135,58 +134,60 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
               width: '100%',
               height: '100%',
               maxHeight: '380px',
-              objectFit: 'cover', // Ensures the image scales nicely inside the box without distorting
+              objectFit: 'cover',
               display: 'block'
             }}
           />
         </div>
-      {/* 2. HERO BANNER: Welcome Freshers writings */}
-      <div style={{ 
-        background: cardBg, 
-        padding: '32px', 
-        borderRadius: '16px', 
-        border: `1px solid ${borderColor}`, 
-        color: textColor,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '150px', height: '150px', background: `radial-gradient(circle, rgba(155, 28, 49, 0.1) 0%, transparent 70%)`, pointerEvents: 'none' }}></div>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>
-          <Sparkles size={16} /> Welcome Freshers
-        </div>
-        
-        <h2 style={{ fontSize: '28px', fontWeight: '800', margin: 0, color: textColor, lineHeight: '1.2' }}>
-          "The journey of a thousand miles begins with a single step. Welcome to your engineering era."
-        </h2>
-        
-        <p style={{ color: textMuted, lineHeight: '1.6', fontSize: '14.5px', margin: 0, maxWidth: '800px' }}>
-          <strong>UniSync</strong> is your all-in-one companion app designed exclusively for first-year engineering students. Navigate your curriculum syllabus books, track your technical growth milestones, explore career pathways across departments, and stay synced with campus happenings effortlessly from a single unified dashboard.
-        </p>
-      </div>
+      </div>
 
-      {/* 3. QUICK PORTAL STATUS: Semester Protocol Active */}
-      <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
-            <ShieldCheck size={16} /> Verified Portal
-          </div>
-          <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 8px 0', color: textColor }}>Semester Protocol Active</h3>
-          <p style={{ color: textMuted, lineHeight: '1.5', fontSize: '13.5px', margin: 0 }}>
-            All tracking parameters, course references, and department pathways are online and ready for your academic year.
-          </p>
-        </div>
-        <div style={{ marginTop: '20px', padding: '12px', borderRadius: '8px', background: darkMode ? '#2A1F22' : '#EFE8E9', fontSize: '12px', fontWeight: '600', color: accentColor, display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
-        </div>
-      </div>
-    </div>
-  );
+      {/* 2. HERO BANNER: Welcome Freshers writings */}
+      <div style={{ 
+        background: cardBg, 
+        padding: '32px', 
+        borderRadius: '16px', 
+        border: `1px solid ${borderColor}`, 
+        color: textColor,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '150px', height: '150px', background: `radial-gradient(circle, rgba(155, 28, 49, 0.1) 0%, transparent 70%)`, pointerEvents: 'none' }}></div>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <Sparkles size={16} /> Welcome Freshers
+        </div>
+        
+        <h2 style={{ fontSize: '28px', fontWeight: '800', margin: 0, color: textColor, lineHeight: '1.2' }}>
+          "The journey of a thousand miles begins with a single step. Welcome to your engineering era."
+        </h2>
+        
+        <p style={{ color: textMuted, lineHeight: '1.6', fontSize: '14.5px', margin: 0, maxWidth: '800px' }}>
+          <strong>UniSync</strong> is your all-in-one companion app designed exclusively for first-year engineering students. Navigate your curriculum syllabus books, track your technical growth milestones, explore career pathways across departments, and stay synced with campus happenings effortlessly from a single unified dashboard.
+        </p>
+      </div>
+
+      {/* 3. QUICK PORTAL STATUS: Semester Protocol Active */}
+      <div style={{ background: cardBg, padding: '24px', borderRadius: '16px', border: `1px solid ${borderColor}`, color: textColor, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: accentColor, fontSize: '12px', fontWeight: '600', textTransform: 'uppercase' }}>
+            <ShieldCheck size={16} /> Verified Portal
+          </div>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', margin: '0 0 8px 0', color: textColor }}>Semester Protocol Active</h3>
+          <p style={{ color: textMuted, lineHeight: '1.5', fontSize: '13.5px', margin: 0 }}>
+            All tracking parameters, course references, and department pathways are online and ready for your academic year.
+          </p>
+        </div>
+        <div style={{ marginTop: '20px', padding: '12px', borderRadius: '8px', background: darkMode ? '#2A1F22' : '#EFE8E9', fontSize: '12px', fontWeight: '600', color: accentColor, display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
+        </div>
+      </div>
+
+    </div>
+  );
 }
-  
 function AcademicPage({ cardBg, borderColor, accentColor, textMuted, textColor }) {
   const [openSubject, setOpenSubject] = useState(null);
 
