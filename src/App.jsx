@@ -183,7 +183,6 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           <Terminal size={14} /> Tip: Use the bottom navigation bar to explore modules!
         </div>
       </div>
-
     </div>
   );
 }
