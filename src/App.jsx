@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Home, BookOpen, TrendingUp, Users, Calendar, User,
+import { 
+  Home, BookOpen, TrendingUp, Users, Calendar, User, 
   Sun, Moon, CheckCircle, ShieldCheck, Terminal, ChevronDown, ChevronUp, Briefcase, GraduationCap, Sparkles
 } from 'lucide-react';
-import GeminiPoster from '../tada.png';
+import gemPoster from '../tada.png';
+import FloatingAssistant from './FloatingAssistant';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -103,6 +104,164 @@ export default function App() {
       };
     }
   });
+
+  useEffect(() => {
+    localStorage.setItem('freshers_profile', JSON.stringify(profile));
+  }, [profile]);
+
+  useEffect(() => {
+    localStorage.setItem('freshers_growth_categories', JSON.stringify(growthCategories));
+  }, [growthCategories]);
+
+  const bgMain = darkMode ? '#0F0A0B' : '#F9F6F6';
+  const sidebarBg = darkMode ? '#161012' : '#FFFFFF';
+  const cardBg = darkMode ? '#1E1417' : '#FFFFFF';
+  const textColor = darkMode ? '#F4F1F1' : '#1C1617';
+  const textMuted = darkMode ? '#A39295' : '#735F63';
+  const accentColor = '#9B1C31';
+  const borderColor = darkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
+
+  const navItems = [
+    { id: 'home', label: 'Overview', icon: <Home size={18} /> },
+    { id: 'academic', label: 'Academics', icon: <BookOpen size={18} /> },
+    { id: 'growth', label: 'Growth', icon: <TrendingUp size={18} /> },
+    { id: 'about', label: 'Depts', icon: <Users size={18} /> },
+    { id: 'events', label: 'Events', icon: <Calendar size={18} /> },
+    { id: 'profile', label: 'Profile', icon: <User size={18} /> },
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: bgMain, color: textColor, fontFamily: 'Inter, system-ui, sans-serif', paddingBottom: '90px' }}>
+      
+      {/* TOP HEADER BAR */}
+      <header style={{ 
+        padding: '14px 24px', 
+        borderBottom: `1px solid ${borderColor}`, 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        backgroundColor: sidebarBg,
+        position: 'sticky',
+        top: 0,
+        zIndex: 10
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* College Logo Placeholder / Image element */}
+          <div style={{ 
+            width: '38px', 
+            height: '38px', 
+            borderRadius: '8px', 
+            background: `linear-gradient(135deg, ${accentColor}, #5C101D)`, 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            color: '#fff', 
+            fontWeight: '900', 
+            fontSize: '15px',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+            overflow: 'hidden'
+          }}>
+            {/* You can replace the text below with <img src="URL_TO_YOUR_LOGO" alt="Logo" style={{width:'100%', height:'100%', objectFit:'cover'}} /> */}
+            🎓
+          </div>
+          <div>
+            <h1 style={{ fontSize: '15px', fontWeight: '800', letterSpacing: '1.2px', margin: 0, color: textColor }}>UNISYNC</h1>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <button 
+            onClick={() => setDarkMode(!darkMode)}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px', 
+              background: darkMode ? '#0F0A0B' : '#EFE8E9', 
+              border: `1px solid ${borderColor}`, 
+              borderRadius: '20px', 
+              padding: '6px 12px', 
+              color: textColor, 
+              cursor: 'pointer',
+              fontSize: '12px',
+              fontWeight: '500'
+            }}
+          >
+            {darkMode ? <Sun size={14} /> : <Moon size={14} />}
+            <span>{darkMode ? 'Light' : 'Dark'}</span>
+          </button>
+        </div>
+      </header>
+
+      {/* MAIN CONTENT AREA */}
+      <main style={{ padding: '24px', flex: 1, maxWidth: '1200px', width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
+        {activeTab === 'home' && <HomePage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
+        {activeTab === 'academic' && <AcademicPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} textColor={textColor} />}
+        {activeTab === 'growth' && <GrowthPage growthCategories={growthCategories} setGrowthCategories={setGrowthCategories} cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
+        {activeTab === 'about' && <AboutPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
+        {activeTab === 'events' && <EventsPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
+        {activeTab === 'profile' && <ProfilePage profile={profile} setProfile={setProfile} growthCategories={growthCategories} cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} textColor={textColor} />}
+      </main>
+
+      {/* FLOATING SLIDING BOTTOM NAVIGATION BAR */}
+      <div style={{
+        position: 'fixed',
+        bottom: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '90%',
+        maxWidth: '640px',
+        backgroundColor: sidebarBg,
+        borderRadius: '16px',
+        border: `1px solid ${borderColor}`,
+        boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
+        padding: '6px',
+        zIndex: 100,
+        boxSizing: 'border-box'
+      }}>
+        <div style={{
+          display: 'flex',
+          overflowX: 'auto',
+          scrollBehavior: 'smooth',
+          gap: '6px',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}>
+          {navItems.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                style={{
+                  flex: '1 0 auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: isActive ? accentColor : 'transparent',
+                  color: isActive ? '#FFFFFF' : textMuted,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -128,15 +287,9 @@ function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textC
           background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)'
         }}>
           <img 
-            src={tadaPoster} 
+            src={gemPoster} 
             alt="Gemini Poster" 
-            style={{
-              width: '100%',
-              height: '100%',
-              maxHeight: '380px',
-              objectFit: 'cover',
-              display: 'block'
-            }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', maxHeight: '380px', display: 'block' }} 
           />
         </div>
       </div>
@@ -731,278 +884,200 @@ function ProfilePage({ profile, setProfile, cardBg, borderColor, accentColor, te
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '24px', boxSizing: 'border-box' }}>
-      
-      {/* Full-width Executive Block Banner */}
-      <div style={{ 
-        background: cardBg, 
-        borderRadius: '24px', 
-        border: `1px solid ${borderColor}`, 
-        padding: '56px 48px', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'space-between',
-        boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
-        width: '100%',
-        boxSizing: 'border-box',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '100%', background: `linear-gradient(135deg, transparent, rgba(155, 28, 49, 0.05))`, pointerEvents: 'none' }}></div>
+    <>
+      <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', color: textColor, display: 'flex', flexDirection: 'column', gap: '24px', boxSizing: 'border-box' }}>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '36px', overflow: 'hidden', width: '100%' }}>
-          <div style={{
-            width: '110px',
-            height: '110px',
-            borderRadius: '24px',
-            backgroundColor: accentColor,
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '900',
-            fontSize: '44px',
-            textTransform: 'uppercase',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-            flexShrink: 0
-          }}>
-            {name ? name.charAt(0) : 'U'}
-          </div>
-
-          <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-            <h2 style={{ fontSize: '36px', fontWeight: '900', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '-0.5px' }}>
-              {name || 'Student Profile'}
-            </h2>
-            <p style={{ color: textMuted, margin: 0, fontSize: '17px', fontWeight: '500' }}>
-              {email || 'No email registered yet'}
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
-              <span style={{ 
-                display: 'inline-block', 
-                fontSize: '12px', 
-                fontWeight: '800', 
-                background: 'rgba(155, 28, 49, 0.15)', 
-                color: accentColor, 
-                padding: '6px 16px', 
-                borderRadius: '8px',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                DEPARTMENT: {department}
-              </span>
-              <span style={{ 
-                display: 'inline-block', 
-                fontSize: '12px', 
-                fontWeight: '700', 
-                background: borderColor, 
-                color: textMuted, 
-                padding: '6px 14px', 
-                borderRadius: '8px',
-                textTransform: 'uppercase'
-              }}>
-                FIRST YEAR
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Professional Pencil Edit Button */}
-        {!isEditing && (
-          <button 
-            onClick={() => setIsEditing(true)}
-            title="Edit Profile"
-            style={{
-              background: borderColor,
-              border: `1px solid ${borderColor}`,
-              borderRadius: '14px',
-              width: '54px',
-              height: '54px',
+        {/* Full-width Executive Block Banner */}
+        <div style={{ 
+          background: cardBg, 
+          borderRadius: '24px', 
+          border: `1px solid ${borderColor}`, 
+          padding: '56px 48px', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
+          width: '100%',
+          boxSizing: 'border-box',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '100%', background: `linear-gradient(135deg, transparent, rgba(155, 28, 49, 0.05))`, pointerEvents: 'none' }}></div>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '36px', overflow: 'hidden', width: '100%' }}>
+            <div style={{
+              width: '110px',
+              height: '110px',
+              borderRadius: '24px',
+              backgroundColor: accentColor,
+              color: '#fff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
-              color: textColor,
-              flexShrink: '0',
-              fontSize: '20px',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            ✏️
-          </button>
+              fontWeight: '900',
+              fontSize: '44px',
+              textTransform: 'uppercase',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+              flexShrink: 0
+            }}>
+              {name ? name.charAt(0) : 'U'}
+            </div>
+
+            <div style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+              <h2 style={{ fontSize: '36px', fontWeight: '900', margin: 0, color: textColor, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '-0.5px' }}>
+                {name || 'Student Profile'}
+              </h2>
+              <p style={{ color: textMuted, margin: 0, fontSize: '17px', fontWeight: '500' }}>
+                {email || 'No email registered yet'}
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
+                <span style={{ 
+                  display: 'inline-block', 
+                  fontSize: '12px', 
+                  fontWeight: '800', 
+                  background: 'rgba(155, 28, 49, 0.15)', 
+                  color: accentColor, 
+                  padding: '6px 16px', 
+                  borderRadius: '8px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}>
+                  DEPARTMENT: {department}
+                </span>
+                <span style={{ 
+                  display: 'inline-block', 
+                  fontSize: '12px', 
+                  fontWeight: '700', 
+                  background: borderColor, 
+                  color: textMuted, 
+                  padding: '6px 14px', 
+                  borderRadius: '8px',
+                  textTransform: 'uppercase'
+                }}>
+                  FIRST YEAR
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Professional Pencil Edit Button */}
+          {!isEditing && (
+            <button 
+              onClick={() => setIsEditing(true)}
+              title="Edit Profile"
+              style={{
+                background: borderColor,
+                border: `1px solid ${borderColor}`,
+                borderRadius: '14px',
+                width: '54px',
+                height: '54px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: textColor,
+                flexShrink: '0',
+                fontSize: '20px',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              ✏️
+            </button>
+          )}
+        </div>
+
+        {isSaved && (
+          <div style={{ fontSize: '14px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(40, 167, 69, 0.2)' }}>
+            Profile successfully updated and saved!
+          </div>
+        )}
+
+        {/* Edit Form Block */}
+        {isEditing && (
+          <div style={{ background: cardBg, borderRadius: '24px', border: `1px solid ${borderColor}`, padding: '40px', color: textColor, boxShadow: '0 12px 40px rgba(0,0,0,0.15)', width: '100%', boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
+              <div>
+                <h3 style={{ fontSize: '20px', fontWeight: '800', margin: '0 0 6px 0', color: textColor }}>Edit Profile Credentials</h3>
+                <p style={{ color: textMuted, margin: 0, fontSize: '14px' }}>Modify your official university account details below.</p>
+              </div>
+              <button 
+                onClick={() => setIsEditing(false)}
+                style={{ background: 'transparent', border: `1px solid ${borderColor}`, padding: '8px 16px', borderRadius: '8px', color: textMuted, cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
+              >
+                Cancel
+              </button>
+            </div>
+
+            <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Full Name</label>
+                <input 
+                  type="text" 
+                  value={name} 
+                  onChange={(e) => setName(e.target.value)} 
+                  placeholder="e.g. THEETCHANA" 
+                  style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email Address</label>
+                <input 
+                  type="email" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  placeholder="e.g. theetchana007@gmail.com" 
+                  style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Primary Department Code</label>
+                <select 
+                  value={department} 
+                  onChange={(e) => setDepartment(e.target.value)}
+                  style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
+                >
+                  <option value="CSBS">CSBS</option>
+                  <option value="CSE">CSE</option>
+                  <option value="CSE (AIML)">CSE (AIML)</option>
+                  <option value="AIDS">AIDS</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="ICE">ICE</option>
+                  <option value="IT">IT</option>
+                  <option value="MECH">MECH</option>
+                  <option value="CIVIL">CIVIL</option>
+                </select>
+              </div>
+              <button 
+                type="submit"
+                style={{ 
+                  background: accentColor, 
+                  color: '#fff', 
+                  border: 'none', 
+                  padding: '16px', 
+                  borderRadius: '12px', 
+                  fontWeight: '800', 
+                  cursor: 'pointer',
+                  marginTop: '12px',
+                  fontSize: '15px',
+                  letterSpacing: '0.5px',
+                  boxShadow: '0 4px 14px rgba(155, 28, 49, 0.4)'
+                }}
+              >
+                Save Profile Credentials
+              </button>
+            </form>
+          </div>
         )}
       </div>
 
-      {isSaved && (
-        <div style={{ fontSize: '14px', color: '#28a745', textAlign: 'center', fontWeight: '600', background: 'rgba(40, 167, 69, 0.1)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(40, 167, 69, 0.2)' }}>
-          Profile successfully updated and saved!
-        </div>
-      )}
-
-      {/* Edit Form Block */}
-      {isEditing && (
-        <div style={{ background: cardBg, borderRadius: '24px', border: `1px solid ${borderColor}`, padding: '40px', color: textColor, boxShadow: '0 12px 40px rgba(0,0,0,0.15)', width: '100%', boxSizing: 'border-box' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
-            <div>
-              <h3 style={{ fontSize: '20px', fontWeight: '800', margin: '0 0 6px 0', color: textColor }}>Edit Profile Credentials</h3>
-              <p style={{ color: textMuted, margin: 0, fontSize: '14px' }}>Modify your official university account details below.</p>
-            </div>
-            <button 
-              onClick={() => setIsEditing(false)}
-              style={{ background: 'transparent', border: `1px solid ${borderColor}`, padding: '8px 16px', borderRadius: '8px', color: textMuted, cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
-            >
-              Cancel
-            </button>
-          </div>
-
-          <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Full Name</label>
-              <input 
-                type="text" 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} 
-                placeholder="e.g. THEETCHANA" 
-                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email Address</label>
-              <input 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                placeholder="e.g. theetchana007@gmail.com" 
-                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
-              />
-            </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', marginBottom: '8px', color: textMuted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Primary Department Code</label>
-              <select 
-                value={department} 
-                onChange={(e) => setDepartment(e.target.value)}
-                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `1px solid ${borderColor}`, background: cardBg, color: textColor, boxSizing: 'border-box', outline: 'none', fontSize: '15px', fontWeight: '500' }}
-              >
-                <option value="CSBS">CSBS</option>
-                <option value="CSE">CSE</option>
-                <option value="CSE (AIML)">CSE (AIML)</option>
-                <option value="AIDS">AIDS</option>
-                <option value="ECE">ECE</option>
-                <option value="EEE">EEE</option>
-                <option value="ICE">ICE</option>
-                <option value="IT">IT</option>
-                <option value="MECH">MECH</option>
-                <option value="CIVIL">CIVIL</option>
-              </select>
-            </div>
-            <button 
-              type="submit"
-              style={{ 
-                background: accentColor, 
-                color: '#fff', 
-                border: 'none', 
-                padding: '16px', 
-                borderRadius: '12px', 
-                fontWeight: '800', 
-                cursor: 'pointer',
-                marginTop: '12px',
-                fontSize: '15px',
-                letterSpacing: '0.5px',
-                boxShadow: '0 4px 14px rgba(155, 28, 49, 0.4)'
-              }}
-            >
-              Save Profile Credentials
-            </button>
-          </form>
-        </div>
-      )}
-    </div>
-  );
-}
-
-  const theme = darkMode
-    ? {
-        bg: '#1A1315',
-        cardBg: '#21181A',
-        borderColor: '#3A2A2D',
-        textColor: '#F5F0F0',
-        textMuted: '#A89A9C',
-        accentColor: '#C73E55'
-      }
-    : {
-        bg: '#FAF7F7',
-        cardBg: '#FFFFFF',
-        borderColor: '#E5E0E0',
-        textColor: '#1A1315',
-        textMuted: '#6B5D5F',
-        accentColor: '#9B1C31'
-    };
-
-  const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'academic', label: 'Academics', icon: BookOpen },
-    { id: 'growth', label: 'Growth', icon: TrendingUp },
-    { id: 'about', label: 'Departments', icon: Users },
-    { id: 'events', label: 'Events', icon: Calendar },
-    { id: 'profile', label: 'Profile', icon: User }
-  ];
-
-  return (
-    <div style={{ minHeight: '100vh', background: theme.bg, color: theme.textColor, transition: 'background 0.3s ease, color 0.3s ease' }}>
-      {/* Top Bar */}
-      <header style={{ position: 'sticky', top: 0, zIndex: 10, background: theme.cardBg, borderBottom: `1px solid ${theme.borderColor}`, padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: '34px', height: '34px', borderRadius: '10px', background: theme.accentColor, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '16px' }}>U</div>
-          <span style={{ fontSize: '18px', fontWeight: '800', color: theme.textColor }}>UniSync</span>
-        </div>
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          style={{ background: 'transparent', border: `1px solid ${theme.borderColor}`, borderRadius: '10px', padding: '8px', cursor: 'pointer', color: theme.textColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          title="Toggle theme"
-        >
-          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
-      </header>
-
-      {/* Page Content */}
-      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 20px 100px 20px' }}>
-        {activeTab === 'home' && <HomePage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
-        {activeTab === 'academic' && <AcademicPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} textColor={theme.textColor} />}
-        {activeTab === 'growth' && <GrowthPage growthCategories={growthCategories} setGrowthCategories={setGrowthCategories} cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
-        {activeTab === 'about' && <AboutPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
-        {activeTab === 'events' && <EventsPage cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} darkMode={darkMode} textColor={theme.textColor} />}
-        {activeTab === 'profile' && <ProfilePage profile={profile} setProfile={setProfile} cardBg={theme.cardBg} borderColor={theme.borderColor} accentColor={theme.accentColor} textMuted={theme.textMuted} textColor={theme.textColor} />}
-      </main>
-
-      {/* Bottom Navigation */}
-      <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: theme.cardBg, borderTop: `1px solid ${theme.borderColor}`, display: 'flex', justifyContent: 'space-around', padding: '8px 0', zIndex: 10 }}>
-        {navItems.map(item => {
-          const Icon = item.icon;
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '2px',
-                cursor: 'pointer',
-                color: isActive ? theme.accentColor : theme.textMuted,
-                padding: '6px 10px',
-                borderRadius: '10px',
-                fontSize: '10px',
-                fontWeight: isActive ? '700' : '500'
-              }}
-            >
-              <Icon size={20} />
-              <span>{item.label}</span>
-            </button>
-          );
-        })}
-      </nav>
-    </div>
+      <FloatingAssistant 
+        cardBg={cardBg} 
+        borderColor={borderColor} 
+        accentColor={accentColor} 
+        textColor={textColor} 
+        textMuted={textMuted} 
+      />
+    </>
   );
 }
