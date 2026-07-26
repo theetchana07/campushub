@@ -5,7 +5,6 @@ import {
 } from 'lucide-react';
 import gemPoster from '../tada.png';
 import FloatingAssistant from './FloatingAssistant';
-import ProfilePage from './ProfilePage'; // Make sure this is imported if it's in another file
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
