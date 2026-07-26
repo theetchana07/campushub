@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import gemPoster from '../tada.png';
 import FloatingAssistant from './FloatingAssistant';
+import ProfilePage from './ProfilePage'; // Make sure this is imported if it's in another file
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -105,163 +106,50 @@ export default function App() {
     }
   });
 
-  useEffect(() => {
-    localStorage.setItem('freshers_profile', JSON.stringify(profile));
-  }, [profile]);
-
-  useEffect(() => {
-    localStorage.setItem('freshers_growth_categories', JSON.stringify(growthCategories));
-  }, [growthCategories]);
-
-  const bgMain = darkMode ? '#0F0A0B' : '#F9F6F6';
-  const sidebarBg = darkMode ? '#161012' : '#FFFFFF';
-  const cardBg = darkMode ? '#1E1417' : '#FFFFFF';
-  const textColor = darkMode ? '#F4F1F1' : '#1C1617';
-  const textMuted = darkMode ? '#A39295' : '#735F63';
-  const accentColor = '#9B1C31';
-  const borderColor = darkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
-
-  const navItems = [
-    { id: 'home', label: 'Overview', icon: <Home size={18} /> },
-    { id: 'academic', label: 'Academics', icon: <BookOpen size={18} /> },
-    { id: 'growth', label: 'Growth', icon: <TrendingUp size={18} /> },
-    { id: 'about', label: 'Depts', icon: <Users size={18} /> },
-    { id: 'events', label: 'Events', icon: <Calendar size={18} /> },
-    { id: 'profile', label: 'Profile', icon: <User size={18} /> },
-  ];
+  // Theme configuration variables based on darkMode
+  const cardBg = darkMode ? '#1e1e1e' : '#ffffff';
+  const borderColor = darkMode ? '#333333' : '#e2e8f0';
+  const accentColor = '#9b1c31';
+  const textColor = darkMode ? '#ffffff' : '#1a202c';
+  const textMuted = darkMode ? '#a0aec0' : '#718096';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: bgMain, color: textColor, fontFamily: 'Inter, system-ui, sans-serif', paddingBottom: '90px' }}>
+    <div style={{ backgroundColor: darkMode ? '#121212' : '#f7fafc', minHeight: '100vh', color: textColor, position: 'relative' }}>
       
-      {/* TOP HEADER BAR */}
-      <header style={{ 
-        padding: '14px 24px', 
-        borderBottom: `1px solid ${borderColor}`, 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'space-between',
-        backgroundColor: sidebarBg,
-        position: 'sticky',
-        top: 0,
-        zIndex: 10
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          {/* College Logo Placeholder / Image element */}
-          <div style={{ 
-            width: '38px', 
-            height: '38px', 
-            borderRadius: '8px', 
-            background: `linear-gradient(135deg, ${accentColor}, #5C101D)`, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            color: '#fff', 
-            fontWeight: '900', 
-            fontSize: '15px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-            overflow: 'hidden'
-          }}>
-            {/* You can replace the text below with <img src="URL_TO_YOUR_LOGO" alt="Logo" style={{width:'100%', height:'100%', objectFit:'cover'}} /> */}
-            🎓
-          </div>
+      {/* Navigation or Header can go here */}
+      
+      {/* Main Content Area */}
+      <div style={{ padding: '32px', maxWidth: '1200px', margin: '0 auto' }}>
+        {activeTab === 'home' && (
           <div>
-            <h1 style={{ fontSize: '15px', fontWeight: '800', letterSpacing: '1.2px', margin: 0, color: textColor }}>UNISYNC</h1>
+            <h1>Welcome to Freshers Hub</h1>
           </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <button 
-            onClick={() => setDarkMode(!darkMode)}
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '6px', 
-              background: darkMode ? '#0F0A0B' : '#EFE8E9', 
-              border: `1px solid ${borderColor}`, 
-              borderRadius: '20px', 
-              padding: '6px 12px', 
-              color: textColor, 
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: '500'
-            }}
-          >
-            {darkMode ? <Sun size={14} /> : <Moon size={14} />}
-            <span>{darkMode ? 'Light' : 'Dark'}</span>
-          </button>
-        </div>
-      </header>
-
-      {/* MAIN CONTENT AREA */}
-      <main style={{ padding: '24px', flex: 1, maxWidth: '1200px', width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
-        {activeTab === 'home' && <HomePage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
-        {activeTab === 'academic' && <AcademicPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} textColor={textColor} />}
-        {activeTab === 'growth' && <GrowthPage growthCategories={growthCategories} setGrowthCategories={setGrowthCategories} cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
-        {activeTab === 'about' && <AboutPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
-        {activeTab === 'events' && <EventsPage cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} darkMode={darkMode} textColor={textColor} />}
-        {activeTab === 'profile' && <ProfilePage profile={profile} setProfile={setProfile} growthCategories={growthCategories} cardBg={cardBg} borderColor={borderColor} accentColor={accentColor} textMuted={textMuted} textColor={textColor} />}
-      </main>
-
-      {/* FLOATING SLIDING BOTTOM NAVIGATION BAR */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '90%',
-        maxWidth: '640px',
-        backgroundColor: sidebarBg,
-        borderRadius: '16px',
-        border: `1px solid ${borderColor}`,
-        boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
-        padding: '6px',
-        zIndex: 100,
-        boxSizing: 'border-box'
-      }}>
-        <div style={{
-          display: 'flex',
-          overflowX: 'auto',
-          scrollBehavior: 'smooth',
-          gap: '6px',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}>
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                style={{
-                  flex: '1 0 auto',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '4px',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  border: 'none',
-                  backgroundColor: isActive ? accentColor : 'transparent',
-                  color: isActive ? '#FFFFFF' : textMuted,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
-        </div>
+        )}
+        
+        {activeTab === 'profile' && (
+          <ProfilePage 
+            profile={profile} 
+            setProfile={setProfile} 
+            cardBg={cardBg} 
+            borderColor={borderColor} 
+            accentColor={accentColor} 
+            textMuted={textMuted} 
+            textColor={textColor} 
+          />
+        )}
       </div>
 
+      {/* Floating Assistant added globally here */}
+      <FloatingAssistant 
+        cardBg={cardBg} 
+        borderColor={borderColor} 
+        accentColor={accentColor} 
+        textColor={textColor} 
+        textMuted={textMuted} 
+      />
     </div>
   );
 }
-
 function HomePage({ cardBg, borderColor, accentColor, textMuted, darkMode, textColor }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
